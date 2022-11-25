@@ -1,0 +1,5 @@
+{
+  "domain": "YOUR_AUTH0_DOMAIN",
+  "clientId": "AUTH0_APPLICATION_CLIENT_ID",
+  "audience": "YOUR_API_IDENTIFIER"
+}

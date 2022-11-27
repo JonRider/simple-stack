@@ -12,7 +12,7 @@ Built with React, MongoDB Atlas / Mongoose, Auth0, Node and Express.
 
 ## Demo
 
-Coming soon on Heroku
+See the [demo](https://simple-stack-app.herokuapp.com/) on Heroku.
 
 ## Installation
 

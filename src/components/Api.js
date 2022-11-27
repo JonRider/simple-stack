@@ -14,8 +14,8 @@ import {
   Col,
 } from "reactstrap";
 
-export const ExternalApiComponent = () => {
-  const { apiOrigin = "http://localhost:3001", audience } = getConfig();
+export const ApiComponent = () => {
+  const { audience, apiOrigin } = getConfig();
 
   const { user, isAuthenticated } = useAuth0();
 
@@ -32,7 +32,7 @@ export const ExternalApiComponent = () => {
       const token = await getAccessTokenSilently();
       const options = {
         method: "POST",
-        url: `${apiOrigin}/api/external/test`,
+        url: `${apiOrigin}/api/test`,
         headers: {
           authorization: `Bearer ${token}`,
         },
@@ -111,4 +111,4 @@ export const ExternalApiComponent = () => {
   );
 };
 
-export default ExternalApiComponent;
+export default ApiComponent;

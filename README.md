@@ -24,11 +24,15 @@ Install dependencies
 
 Create an [Auth0](https://auth0.com/) application and configure it in **auth_config.json**
 
+Make sure you also set an appOrigin and apiOrigin for cors policy compliance.
+
 ```bash
 {
   "domain": "YOUR_AUTH0_DOMAIN",
   "clientId": "AUTH0_APPLICATION_CLIENT_ID",
-  "audience": "YOUR_API_IDENTIFIER"
+  "audience": "YOUR_API_IDENTIFIER",
+  "appOrigin": "APP_ORIGIN",
+  "apiOrigin": "API_ORIGIN"
 }
 ```
 

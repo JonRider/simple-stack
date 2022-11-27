@@ -18,9 +18,9 @@ import {
 import { FaArrowRight } from "react-icons/fa";
 
 export const Database = () => {
-  const { apiOrigin = "http://localhost:3001", audience } = getConfig();
+  const { apiOrigin, audience } = getConfig();
 
-  const { isAuthenticated } = useAuth0();
+  const { isAuthenticated, user } = useAuth0();
 
   const [state, setState] = useState({
     createItem: "",
@@ -51,12 +51,12 @@ export const Database = () => {
       const token = await getAccessTokenSilently();
       const options = {
         method: "POST",
-        url: `${apiOrigin}/api/external`,
+        url: `${apiOrigin}/api`,
         headers: {
           authorization: `Bearer ${token}`,
         },
         contentType: "application/json",
-        data: { item: state.createItem },
+        data: { item: state.createItem, email: user.email },
       };
 
       let responseData = null;
@@ -86,7 +86,7 @@ export const Database = () => {
       const token = await getAccessTokenSilently();
       const options = {
         method: "GET",
-        url: `${apiOrigin}/api/external`,
+        url: `${apiOrigin}/api/${user.email}`,
         headers: {
           authorization: `Bearer ${token}`,
         },
@@ -119,12 +119,12 @@ export const Database = () => {
       const token = await getAccessTokenSilently();
       const options = {
         method: "PUT",
-        url: `${apiOrigin}/api/external`,
+        url: `${apiOrigin}/api`,
         headers: {
           authorization: `Bearer ${token}`,
         },
         contentType: "application/json",
-        data: { item: state.updateItem },
+        data: { item: state.updateItem, email: user.email },
       };
 
       let responseData = null;
@@ -153,11 +153,12 @@ export const Database = () => {
       const token = await getAccessTokenSilently();
       const options = {
         method: "DELETE",
-        url: `${apiOrigin}/api/external`,
+        url: `${apiOrigin}/api`,
         headers: {
           authorization: `Bearer ${token}`,
         },
         contentType: "application/json",
+        data: { email: user.email },
       };
 
       let responseData = null;
@@ -172,7 +173,6 @@ export const Database = () => {
         deleteDbItem: responseData.data.item,
         deleteOpen: true,
       });
-      console.log(responseData.data.item);
     } catch (error) {
       setState({
         ...state,
@@ -311,7 +311,7 @@ export const Database = () => {
                   name="updateItem"
                   className="input-field"
                   value={state.readDbItem}
-                  disabled="true"
+                  disabled={true}
                 />
                 <Button
                   color="danger"
